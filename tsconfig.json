@@ -20,13 +20,14 @@
     "outDir": "./build",
     "allowJs": true,
     "noEmit": false,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": []
   },
   "include": [
     "./src/**/*", "index.js"
 , "tests/unit/domain/camião.test.ts"  ],
   "exclude": [
-    "node_modules/@types/mocha/index.d.ts",
+    "./node_modules/@types/mocha/index.d.ts",
     "tests"
   ]
 }
