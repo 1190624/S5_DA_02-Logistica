@@ -1,0 +1,25 @@
+name: Logistica C.I.
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-all: 
+                          
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Logistica Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.18.x
+        cache: 'npm '
+      
+    - name: Build & Test Logistica Node
+      run: echo 'Building and Testing Node'
+        && npm install nodemon --save
+        && npm run-script -build
