@@ -21,7 +21,7 @@
     "allowJs": true,
     "noEmit": false,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "types": ["cypress"]
   },
   "include": [
     "./src/**/*", "index.js"
