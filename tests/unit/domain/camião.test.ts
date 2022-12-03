@@ -27,7 +27,7 @@ describe('Camião Testes Unitários', () => {
 	const caracteristicaVazia = " ";
 
 const camião = Camiao.create({
-	matricula: Matricula.create(matricula).getValue().value,
+	matricula: new Matricula(matricula),
 	caracteristica: Caracteristica.create(caracteristica).getValue().value,
 	autonomia: Autonomia.create(autonomia).getValue().value,
 	capacidadeTransporte: CapacidadeTransporte.create(capacidadeTransporte).getValue().value,
@@ -83,7 +83,7 @@ const camião = Camiao.create({
 
 
     it('Criar Matrícula Válida', () => {
-		expect(camião.getValue().matricula.value).to.equal(matricula);
+		expect(camião.getValue().matricula.toString()).to.equal(matricula);
 	})
 
 
