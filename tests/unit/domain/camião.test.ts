@@ -18,7 +18,7 @@ describe('Camião Testes Unitários', () => {
         let capacidadeBateria = 2311;
         let tara=1001;
         let tempoCarregamento = "23:11";
-    
+		let ativo = true;
 
 	const autonomiaInvalida = 60;
 	const capacidadeTransporteInvalida =100;
@@ -33,7 +33,8 @@ const camião = Camiao.create({
 	capacidadeTransporte: CapacidadeTransporte.create(capacidadeTransporte).getValue().value,
 	capacidadeBateria: CapacidadeBateria.create(capacidadeBateria).getValue().value,
 	tara: Tara.create(tara).getValue().value,
-	tempoCarregamento: TempoCarregamento.create(tempoCarregamento).getValue().value
+	tempoCarregamento: TempoCarregamento.create(tempoCarregamento).getValue().value,
+	ativo : ativo
 
 });
 

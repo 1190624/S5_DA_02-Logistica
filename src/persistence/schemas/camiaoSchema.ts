@@ -46,6 +46,11 @@ const CamiaoSchema = new mongoose.Schema(
           index: true,
           writable: true
       },
+
+      ativo:{
+        type: Boolean,
+        index: true
+      }
   },
   { timestamps: true },
 );

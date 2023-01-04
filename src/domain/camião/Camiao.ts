@@ -19,7 +19,7 @@ interface CamiaoProps {
     capacidadeBateria: CapacidadeBateria
     tara: Tara
     tempoCarregamento: TempoCarregamento
-
+    ativo: boolean
 }
 
 export class Camiao extends AggregateRoot<CamiaoProps> {
@@ -56,6 +56,10 @@ export class Camiao extends AggregateRoot<CamiaoProps> {
         return this.props.tempoCarregamento;
     }
 
+    get ativo(): boolean{
+      return this.props.ativo;
+    }
+
     set matricula ( value: Matricula) {
         this.props.matricula = value;
       }
@@ -82,6 +86,10 @@ export class Camiao extends AggregateRoot<CamiaoProps> {
         this.props.tempoCarregamento;
       }
 
+      set ativo(value: boolean){
+        this.props.ativo = value;
+      }
+
 
     private constructor(props: CamiaoProps, id?: UniqueEntityID) {
         super(props, id);
@@ -103,7 +111,8 @@ export class Camiao extends AggregateRoot<CamiaoProps> {
             capacidadeTransporte: capTransAux.getValue(),
             capacidadeBateria: capBateriaAux.getValue(),
             tara: taraAux.getValue(),
-            tempoCarregamento: tempoAux.getValue()
+            tempoCarregamento: tempoAux.getValue(),
+            ativo: camiaoDTO.ativo
         }, id);
 
         return Result.ok<Camiao>(camiao);

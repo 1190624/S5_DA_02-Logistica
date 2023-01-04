@@ -7,4 +7,5 @@ export default interface CamiaoDTO {
     capacidadeBateria: number;
     tara: number;
     tempoCarregamento: string;
+    ativo: boolean;
   }

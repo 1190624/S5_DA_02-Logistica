@@ -3,11 +3,10 @@ import { Mapper } from "../core/infra/Mapper";
 import { Document, Model } from 'mongoose';
 import { IRolePersistence } from '../dataschema/IRolePersistence';
 
-import { Role } from "../domain/role";
-
 import { UniqueEntityID } from "../core/domain/UniqueEntityID";
 import CamiaoDTO from "../dto/CamiaoDTO";
 import { Camiao } from "../domain/camião/Camiao";
+import { ICamiaoPersistence } from "../dataschema/ICamiaoPersistence";
 
 export class CamiaoMapper extends Mapper<Camiao> {
   
@@ -21,10 +20,11 @@ export class CamiaoMapper extends Mapper<Camiao> {
         capacidadeBateria: camiao.capacidadeBateria.value,
         tara: camiao.tara.value,
         tempoCarregamento: camiao.tempoCarregamento.value,
+        ativo: camiao.ativo
     } as CamiaoDTO;
   }
 
-  public static toDomain (camiao: any | Model<IRolePersistence & Document> ): Camiao {
+  public static toDomain (camiao: any | Model<ICamiaoPersistence & Document> ): Camiao {
     const camiaoOrError = Camiao.create(
       camiao,
       new UniqueEntityID(camiao.domainId)
@@ -45,6 +45,7 @@ export class CamiaoMapper extends Mapper<Camiao> {
             capacidadeBateria: camiao.capacidadeBateria.value,
             tara: camiao.tara.value,
             tempoCarregamento: camiao.tempoCarregamento.value,
+            ativo: camiao.ativo
     };
     return res;
 

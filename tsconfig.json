@@ -20,8 +20,7 @@
     "outDir": "./build",
     "allowJs": true,
     "noEmit": false,
-    "esModuleInterop": true,
-    "types": []
+    "esModuleInterop": true
   },
   "include": [
     "./src/**/*", "index.js"
