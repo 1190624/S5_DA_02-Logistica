@@ -4,4 +4,5 @@ export default interface ICamiaoController  {
   createCamiao(req: Request, res: Response, next: NextFunction);
   updateCamiao(req: Request, res: Response, next: NextFunction);
   getListaCamiao(req: Request, res: Response, next: NextFunction);
+  mudarStatus(req: Request, res: Response, next: NextFunction);
 }

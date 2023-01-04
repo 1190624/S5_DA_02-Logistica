@@ -22,14 +22,18 @@ export default class CamiaoService implements ICamiaoService {
 
     public async criarCamiao(camiaoDTO : CamiaoDTO) : Promise<Result<CamiaoDTO>> {
       try {
+        camiaoDTO.ativo = true;
         const result = await Camiao.create(camiaoDTO);
+
 
         if (result.isFailure)
           return Result.fail<CamiaoDTO>(result.errorValue());
 
         
         const camiaoResult = result.getValue();
-        
+        //camiaoResult.ativo = true;
+        //console.log(camiaoResult);
+
         await this.camiaoRepo.save(camiaoResult);
 
         const camiaoDTOResult = CamiaoMapper.toDTO(camiaoResult) as CamiaoDTO;
@@ -57,7 +61,7 @@ export default class CamiaoService implements ICamiaoService {
               camiao.capacidadeTransporte = new CapacidadeTransporte({value: camiaoDTO.capacidadeTransporte});
               camiao.tara = new Tara({value: camiaoDTO.tara});
               camiao.tempoCarregamento = new TempoCarregamento({value: camiaoDTO.tempoCarregamento});
-        
+      
               await this.camiaoRepo.save(camiao);
       
               const camiaoDTOResult = CamiaoMapper.toDTO(camiao) as CamiaoDTO;
@@ -86,5 +90,31 @@ export default class CamiaoService implements ICamiaoService {
     }
 
 
+    
+    public async mudarStatus(matricula: string): Promise<Result<CamiaoDTO>>{
+      try {
+        const camiao = await this.camiaoRepo.findByDomainMatricula(matricula);
+
+        
+        if (camiao === null){
+          return Result.fail<CamiaoDTO>("Camião não foi encontrado");
+        } 
+
+        camiao.ativo = !camiao.ativo;
+
+          await this.camiaoRepo.save(camiao);
+
+          const camiaoDTOResult = CamiaoMapper.toDTO(camiao) as CamiaoDTO;
+
+          return Result.ok<CamiaoDTO>( camiaoDTOResult)
+
+        
+
+
+  } catch(e){
+    throw e;
+  }
+
+    }
 
 }

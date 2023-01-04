@@ -18,6 +18,7 @@ export default class CamiaoController implements ICamiaoController /* TODO: exte
     
     public async createCamiao(request: Request, response: Response, next: NextFunction) {
         try {
+    
             const result = await this.camiaoServiceInstance.criarCamiao(request.body as CamiaoDTO) as Result<CamiaoDTO>;
 
             if (result.isFailure)
@@ -58,6 +59,24 @@ export default class CamiaoController implements ICamiaoController /* TODO: exte
             }
 
             const camiaoPosts = listaCamiaoOrError.getValue();
+            res.status(200);
+            return  res.json(camiaoPosts);
+        } catch(e) {
+            return next(e);
+        }
+    }
+
+
+    async mudarStatus(req: Request, res: Response, next: NextFunction){
+        try {
+            const matricula = req.query.matricula;
+            const novo = await this.camiaoServiceInstance.mudarStatus(matricula as string) as Result<CamiaoDTO>;
+
+            if (novo.isFailure) {
+                return res.status(400).send();
+            }
+
+            const camiaoPosts = novo.getValue();
             res.status(200);
             return  res.json(camiaoPosts);
         } catch(e) {
