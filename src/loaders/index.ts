@@ -4,7 +4,6 @@ import mongooseLoader from './mongoose';
 import Logger from './logger';
 
 import config from '../../config';
-import camiaoSchema from '../persistence/schemas/camiaoSchema';
 
 export default async ({ expressApp }) => {
   const mongoConnection = await mongooseLoader();
@@ -21,6 +20,13 @@ export default async ({ expressApp }) => {
     name: 'roleSchema',
     schema: '../persistence/schemas/roleSchema',
   };
+
+  const planeamentoSchema = {
+    // compare with the approach followed in repos and services
+    name: 'planeamentoSchema',
+    schema: '../persistence/schemas/planeamentoSchema',
+  };
+
 
   const camiaoSchema = {
     name: 'camiaoSchema',
@@ -40,10 +46,18 @@ export default async ({ expressApp }) => {
   const camiaoController = {
     name: config.controllers.camiao.name,
     path: config.controllers.camiao.path}
+  
   const rotaController = {
     name: config.controllers.rota.name,
     path: config.controllers.rota.path
   }
+
+  const planeamentoController = {
+    name: config.controllers.planeamento.name,
+    path: config.controllers.planeamento.path
+  }
+
+
 
   const roleRepo = {
     name: config.repos.role.name,
@@ -65,6 +79,11 @@ export default async ({ expressApp }) => {
     path: config.repos.camiao.path
   }
 
+  const planeamentoRepo = {
+    name: config.repos.planeamento.name,
+    path: config.repos.planeamento.path
+  }
+
 
   const roleService = {
     name: config.services.role.name,
@@ -81,29 +100,38 @@ export default async ({ expressApp }) => {
     path: config.services.rota.path
   }
 
+  const planeamentoService = {
+    name: config.services.planeamento.name,
+    path: config.services.planeamento.path
+  }
+
   await dependencyInjectorLoader({
     mongoConnection,
     schemas: [
       userSchema,
       roleSchema,
       rotaSchema,
-      camiaoSchema
+      camiaoSchema, 
+      planeamentoSchema
     ],
     controllers: [
       roleController,
       camiaoController,
-      rotaController
+      rotaController,
+      planeamentoController
     ],
     repos: [
       roleRepo,
       userRepo,
       camiaoRepo,
-      rotaRepo
+      rotaRepo, 
+      planeamentoRepo
     ],
     services: [
       roleService,
       camiaoService,
-      rotaService
+      rotaService, 
+      planeamentoService
     ]
   });
   Logger.info('✌️ Schemas, Controllers, Repositories, Services, etc. loaded');

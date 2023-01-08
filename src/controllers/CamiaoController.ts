@@ -82,6 +82,7 @@ export default class CamiaoController implements ICamiaoController /* TODO: exte
         } catch(e) {
             return next(e);
         }
+
     }
 
 }

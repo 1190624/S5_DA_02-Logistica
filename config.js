@@ -54,7 +54,13 @@ export default {
     rota:{
       name: "RotaController",
       path: "../controllers/RotaController"
-    } 
+    },
+    planeamento:{
+      name: "PlaneamentoController",
+      path: "../controllers/PlaneamentoController"
+    }
+    
+    
   },
 
   repos: {
@@ -73,7 +79,11 @@ export default {
     rota:{
       name: "rotaRepo",
       path: "../repos/rotaRepo"
-    } 
+    }, 
+    planeamento:{
+      name:"PlaneamentoRepo",
+      path: "../repos/planeamentoRepo"
+  }
   },
 
   services: {
@@ -88,6 +98,10 @@ export default {
     rota:{
       name: "RotaService",
       path: "../services/RotaService"
-    }  
+    },
+    planeamento:{
+      name: "PlaneamentoService",
+      path: "../services/PlaneamentoService"
+    }
   },
 };
