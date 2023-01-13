@@ -18,28 +18,6 @@ export default class PlaneamentoRepo implements IPlaneamentoRepo {
   exists(t: Planeamento): Promise<boolean> {
     throw new Error('Method not implemented.');
   }
-    /*
-    public async save(p: Planeamento): Promise<Planeamento> {
-      const query = {matricula: p.matricula.value};
-      const pDoc = await this.planeamentoSchema.findOne(query);
-  
-      try {
-        if (pDoc === null) {
-          const rawP : any = PlaneamentoMap.toPersistence(p);
-          const newPlaneamento = await this.planeamentoSchema.create(rawP);
-          return PlaneamentoMap.toDomain(newPlaneamento);
-        } else {
-          pDoc.matricula = p.matricula.value;
-          //pDoc.data = p.data.value;
-          
-          await pDoc.save();
-          return p;
-        }
-      } catch (err) {
-        throw err;
-      }
-    }
-*/
 
     public async save(p: Planeamento): Promise<Planeamento> {
       //const query = { matricula : camiao.id }; 
@@ -77,6 +55,13 @@ export default class PlaneamentoRepo implements IPlaneamentoRepo {
       }
       return null;
     }
+
+
+    public async findAll(): Promise<Planeamento[]> {
+      const routeArray = await this.planeamentoSchema.find();
+
+      return routeArray.map(item => PlaneamentoMap.toDomain(item));
+  }
   }
 
 

@@ -83,7 +83,21 @@ export default class PlaneamentoService implements IPlaneamentoService {
 
 			}
 				
-		   
+			public async getListaPlaneamento(): Promise<Result<IPlaneamentoDTO[]>> {
+				try {
+				  const lista = await this.pRepo.findAll();
+		  
+				  if (lista == null) {
+					  return Result.fail<IPlaneamentoDTO[]>("Não existem planeamentos registados.");
+				  }
+		  
+				  const resultado = lista.map((lista) => PlaneamentoMap.toDTO(lista) as IPlaneamentoDTO);
+				  return Result.ok<IPlaneamentoDTO[]>(resultado);
+			  } catch(e) {
+				  throw e;
+			  }
+				
+			  }
 		
 
 
