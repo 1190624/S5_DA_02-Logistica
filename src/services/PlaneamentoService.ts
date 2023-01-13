@@ -32,8 +32,8 @@ export default class PlaneamentoService implements IPlaneamentoService {
 			}
 			console.log(2);
 		
-			const url = 'http://127.0.0.1:8000/heuristicas/';
-
+			//const url = 'http://127.0.0.1:8000/heuristicas/';
+			const url = '213.22.149.37:8000';
 			  //console.log(pDoc.matricula);
 			  //console.log(pDoc.data);
 			  
