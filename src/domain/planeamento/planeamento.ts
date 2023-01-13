@@ -9,15 +9,14 @@ import { Guard } from "../../core/logic/Guard";
 
 
 interface PlaneamentoProps {
-    matricula: MatriculaPlaneamento
-    data: DataPlaneamento
+    matricula: MatriculaPlaneamento;
+    data: DataPlaneamento;
     //entregas: EntregasPlaneamento[]
-    armazem: ArmazemPlaneamento
+    armazem: ArmazemPlaneamento;
 
 }
 
 export class Planeamento extends AggregateRoot<PlaneamentoProps> {
-    p: Result<MatriculaPlaneamento>;
     get id(): UniqueEntityID {
         return this._id;
     }

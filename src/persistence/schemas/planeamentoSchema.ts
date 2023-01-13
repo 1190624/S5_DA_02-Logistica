@@ -3,17 +3,17 @@ import mongoose from 'mongoose';
 
 const PlaneamentoSchema = new mongoose.Schema(
   {
-    matricula: { 
+    Matricula: { 
         type: String,
         index: true
     },
 
-    data: {
+    Data: {
         type: String,
         index: true,
     },
 
-    armazem: {
+    Armazem: {
         type: String,
         index: true
     },

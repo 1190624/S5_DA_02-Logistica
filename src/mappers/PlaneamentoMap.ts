@@ -32,6 +32,8 @@ export class PlaneamentoMap extends Mapper<Planeamento> {
   }
 
   public static toPersistence (p: Planeamento): any {
+    
+
     const res = {
             Matricula: p.matricula.value,
             Data: p.data.value,
