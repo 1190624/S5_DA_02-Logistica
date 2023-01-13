@@ -3,11 +3,6 @@ import mongoose from 'mongoose';
 
 const PlaneamentoSchema = new mongoose.Schema(
   {
-    domainId: {
-			type: String,
-			unique: true
-		},
-
     matricula: { 
         type: String,
         index: true

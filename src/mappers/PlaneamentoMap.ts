@@ -13,9 +13,9 @@ export class PlaneamentoMap extends Mapper<Planeamento> {
   public static toDTO(p: Planeamento): IPlaneamentoDTO {
     return {
 
-        matricula: p.matricula.props.value,
-        data: p.data.props.value,
-        armazens: p.armazem.props.value
+        Matricula: p.matricula.props.value,
+        Data: p.data.props.value,
+        Armazens: p.armazem.props.value
     } as IPlaneamentoDTO;
   }
 
@@ -33,9 +33,9 @@ export class PlaneamentoMap extends Mapper<Planeamento> {
 
   public static toPersistence (p: Planeamento): any {
     const res = {
-            matricula: p.matricula.value,
-            data: p.data.value,
-            armazem: p.armazem.value,
+            Matricula: p.matricula.value,
+            Data: p.data.value,
+            Armazem: p.armazem.value,
 
     };
     return res;

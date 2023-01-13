@@ -5,6 +5,7 @@ import { MatriculaPlaneamento } from "./matriculaPlaneamento";
 import { DataPlaneamento } from "./dataPlaneamento";
 import { ArmazemPlaneamento } from "./armazemPlaneamento";
 import PlaneamentoDTO from "../../dto/IPlaneamentoDTO";
+import { Guard } from "../../core/logic/Guard";
 
 
 interface PlaneamentoProps {
@@ -40,13 +41,13 @@ export class Planeamento extends AggregateRoot<PlaneamentoProps> {
     }
 
     public static create(planeamentoDTO: PlaneamentoDTO | any, id?: UniqueEntityID): Result<Planeamento> {
-        
-        const matriculaAux = new MatriculaPlaneamento(planeamentoDTO.matricula);
-        const dataAux = DataPlaneamento.create(planeamentoDTO.data);
-        const armazensAux = ArmazemPlaneamento.create(planeamentoDTO.armazens);
-        
+        const matriculaAux = MatriculaPlaneamento.create(planeamentoDTO.Matricula);
+        const dataAux = DataPlaneamento.create(planeamentoDTO.Data);
+        const armazensAux = ArmazemPlaneamento.create(planeamentoDTO.Armazens);
+
+
         const p = new Planeamento({
-            matricula: matriculaAux,
+            matricula: matriculaAux.getValue(),
             data: dataAux.getValue(),
             armazem: armazensAux.getValue(),
         }, id);
@@ -54,4 +55,5 @@ export class Planeamento extends AggregateRoot<PlaneamentoProps> {
         return Result.ok<Planeamento>(p);
 
     }
+
 }

@@ -16,7 +16,7 @@ export default class PlaneamentoController implements IPlaneamentoController {
 	public async criarPlaneamento(req: Request, res: Response, next: NextFunction) {
 		try {
 			
-			const planeamentoOrError = await this.service.criarPlaneamento(req.body as IPlaneamentoDTO, req.body.heuristica) as Result<{ pDTO: IPlaneamentoDTO, token: string }>;
+			const planeamentoOrError = await this.service.criarPlaneamento(req.body.Heuristica, req.body.Matricula, req.body.Data) as Result<IPlaneamentoDTO>;
 
 			if (planeamentoOrError.isFailure) {
 				return res.status(400).json(planeamentoOrError.error);
